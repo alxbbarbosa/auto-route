@@ -29,6 +29,8 @@ abbarbosa
 
 Deverá fazer o clone deste projeto para este diretório. Uma estrutura semelhante a esta deverá existir:
 
+```
+
 (diretório do projeto)
           |
           |
@@ -46,6 +48,7 @@ Deverá fazer o clone deste projeto para este diretório. Uma estrutura semelhan
                               |
                               \--> ... (demais arquivos do código)
 
+```
 
 Se tiver experiencia com composer, poderá salvar onde achar conveniente.
 
