@@ -128,7 +128,7 @@ e a Facade (Note que parte do código foi omitido, deixando apenas as informaç�
 
     ...
 
-    'autoRoute'=> \Abbarbosa\infoDynamics\AutoRoute\Model\Facade\AutoRoute::class,
+    'autoRoute'=> \Abbarbosa\infoDynamics\AutoRoute\Facade\AutoRoute::class,
   ],
 ];
 
@@ -139,7 +139,7 @@ A única linha que será necessário adicionar no arquivo web.php:
 
 ```
 
-\Abbarbosa\infoDynamics\AutoRoute\Model\Facade\AutoRoute::register();
+\Abbarbosa\infoDynamics\AutoRoute\Facade\AutoRoute::register();
 
 ```
 
