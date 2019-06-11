@@ -152,7 +152,7 @@ Feito isso pode salvar todas suas rotas no banco de dados e ignorar completament
 
 ## Tratando problemas
 
-Por padrão, o middleware auth será preenchido quando não for fornecido. Acontece que se você não estiver utilizando o sistema de login do Laravel, aquele que se executa com o comando:
+Por padrão, a coluna middleware será preenchida com auth quando não for fornecido nenhum valor. Acontece que se você não estiver utilizando o sistema de login do Laravel, aquele que se executa com o comando:
 
 ```
 
