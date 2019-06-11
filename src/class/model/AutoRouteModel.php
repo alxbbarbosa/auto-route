@@ -34,6 +34,8 @@ class AutoRouteModel extends Model implements iAutoRouteModel
         'resource'
     ];
 
+    public $timestamps = false;
+    
     public function tableExists(): bool
     {
         $driver = Config::get('database.default');
