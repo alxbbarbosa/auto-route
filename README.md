@@ -150,6 +150,25 @@ Para ajudar a criar rotas, há um seeder explicando cada coluna, oque deverá e 
 
 Feito isso pode salvar todas suas rotas no banco de dados e ignorar completamente as entradas de rotas no arquivo web.php.
 
+## Tratando problemas
+
+Por padrão, o middleware auth será preenchido quando não for fornecido. Acontece que se você não estiver utilizando o sistema de login do Laravel, aquele que se executa com o comando:
+
+```
+
+php artisan make:auth
+
+```
+
+Você poderá se deparar um uma mensagem de erro informano que a rota login não foi encontrada. Para resolver isso, você deve atualizar a coluna middleware como vazia ou nula. Se estiver utilizando o seeder para exemplo, poderá adicionar mais uma linha:
+
+```
+
+middleware => null
+
+```
+
+Se você armazenou uma rota informando nome, método, não preencha a coluna resource. Issa faria com que estes dados fossem ignorados, configurando rotas não esperadas.
 
 ## Authors
 
