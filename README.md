@@ -1,7 +1,7 @@
 # AutoRoute DB
 ------------------------------------------------------------------------------
 
-É uma lib para carregamento das rotas apartir do banco de dados.
+É uma lib para carregamento das rotas no Laravel apartir do banco de dados.
 
 No momento está funcionando adequadamente para Postgres porque tem sido desenvolvido em um ambiente com Postgres. 
 Mas foi implementado também para MySQL, embora ainda esteja em desenvolvimento, não testado por completo.
