@@ -32,49 +32,38 @@ class AutoRouteDbService
         if ($this->model->tableExists()) {
             $myRoute = $this->model->where('resource', '!=', true)->get();
             $myRoute->each(function (iAutoRouteModel $myRoute) use (&$return) {
-                switch ($myRoute->verb) {
-                    case 'get':
-                        Route::get($myRoute->prefix.'/'.$myRoute->pattern,
-                                $myRoute->controller.'@'.$myRoute->method)
-                            ->name($myRoute->name)
-                            ->middleware($myRoute->middleware);
-                        $return = true;
-                        break;
-                    case 'post':
-                        Route::post($myRoute->prefix.'/'.$myRoute->pattern,
-                                $myRoute->controller.'@'.$myRoute->method)
-                            ->name($myRoute->name)
-                            ->middleware($myRoute->middleware);
-                        $return = true;
-                        break;
-                    case 'put':
-                        Route::put($myRoute->prefix.'/'.$myRoute->pattern,
-                                $myRoute->controller.'@'.$myRoute->method)
-                            ->name($myRoute->name)
-                            ->middleware($myRoute->middleware);
-                        $return = true;
-                        break;
-                    case 'delete':
-                        Route::delete($myRoute->prefix.'/'.$myRoute->pattern,
-                                $myRoute->controller.'@'.$myRoute->method)
-                            ->name($myRoute->name)
-                            ->middleware($myRoute->middleware);
-                        $return = true;
-                        break;
-                    case 'any':
-                        Route::any($myRoute->prefix.'/'.$myRoute->pattern,
-                                $myRoute->controller.'@'.$myRoute->method)
-                            ->name($myRoute->name)
-                            ->middleware($myRoute->middleware);
-                        $return = true;
-                        break;
+
+                $route_name = !is_null($myRoute->name) && strlen($myRoute->name)
+                        ? $myRoute->name : str_replace('/', '-',
+                        $myRoute->prefix).str_replace('controller', '',
+                        strtolower($myRoute->controller)).'.'.$myRoute->method;
+
+                if (!is_null($myRoute->middleware) && strlen($myRoute->middleware)
+                    > 0) {
+                    Route::{$myRoute->verb}($myRoute->prefix.'/'.$myRoute->pattern,
+                            $myRoute->controller.'@'.$myRoute->method)
+                        ->name($route_name)
+                        ->middleware($myRoute->middleware);
+                    $return = true;
+                } else {
+                    Route::{$myRoute->verb}($myRoute->prefix.'/'.$myRoute->pattern,
+                            $myRoute->controller.'@'.$myRoute->method)
+                        ->name($myRoute->name);
+                    $return = true;
                 }
             });
             $resources = $this->model->where('resource', '=', true)->get();
             $resources->each(function (iAutoRouteModel $resource) use (&$return) {
-                Route::resource($resource->pattern, $resource->controller)
-                    ->middleware($resource->middleware);
-                $return = true;
+
+                if (!is_null($resource->middleware) && strlen($resource->middleware)
+                    > 0) {
+                    Route::resource($resource->pattern, $resource->controller)
+                        ->middleware($resource->middleware);
+                    $return = true;
+                } else {
+                    Route::resource($resource->pattern, $resource->controller);
+                    $return = true;
+                }
             });
         }
         return $return;
