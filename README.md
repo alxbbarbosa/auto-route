@@ -52,7 +52,7 @@ Deverá fazer o clone deste projeto para este diretório. Uma estrutura semelhan
 
 Se tiver experiencia com composer, poderá salvar onde achar conveniente.
 
-Visto que, o pacote não ainda está sendo instalado pelo composer, o trabalho deverá ser todo manual.
+Visto que, o pacote ainda não está sendo instalado pelo composer, o trabalho deverá ser feito todo manual.
 Você deverá adicionar ao composer.json as linhas, conforme a sessão abaixo:
 
 ```
